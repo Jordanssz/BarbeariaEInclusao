@@ -8,7 +8,7 @@ que ofereçam recursos de acessibilidade e inclusão.
 Demonstração do Sistema
 
 ▶️ Assista ao vídeo de demonstração no YouTube:  
-https://youtu.be/qFVKJC8Z-5k
+https://youtu.be/ly7ZsBNkSzo?si=Rk809qpldkpOTu2B
 
 Para instalação das dependências do front-end do sistema:
 
