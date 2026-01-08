@@ -1,0 +1,68 @@
+<ion-content class="custom-bg" [fullscreen]="true">
+  <div class="container">
+    <ion-button fill="clear" class="voltar-btn" routerLink="/inicio">
+      <ion-icon name="arrow-back" slot="start"></ion-icon>
+      Início
+    </ion-button>
+    <div class="profile-pic-box">
+      <img [src]="fotoPreview || 'assets/avatar-placeholder.svg'" alt="Avatar" class="profile-pic" />
+      <button class="camera-btn" type="button" (click)="triggerFileInput()">
+        <ion-icon name="camera" class="camera-icon"></ion-icon>
+      </button>
+      <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" hidden>
+    </div>
+    <form [formGroup]="formGroup" (ngSubmit)="cadastrar()">
+      <ion-item class="input-item" lines="none">
+        <ion-input
+          formControlName="nome"
+          placeholder="Usuário*"
+          type="text"
+          required>
+        </ion-input>
+      </ion-item>
+      <ion-item class="input-item" lines="none">
+        <ion-input
+          formControlName="email"
+          placeholder="Email*"
+          type="email"
+          required>
+        </ion-input>
+      </ion-item>
+      <ion-item class="input-item" lines="none">
+        <ion-input
+          formControlName="telefone"
+          placeholder="Telefone*"
+          type="tel"
+          required>
+        </ion-input>
+      </ion-item>
+      <ion-item class="input-item" lines="none">
+        <ion-input
+          formControlName="senha"
+          placeholder="Senha*"
+          type="password"
+          required>
+        </ion-input>
+      </ion-item>
+      <ion-item class="input-item" lines="none">
+        <ion-textarea
+          formControlName="descricao"
+          placeholder="Descrição"
+          autoGrow="true">
+        </ion-textarea>
+      </ion-item>
+      <div class="entrar-btn-wrapper">
+        <ion-button
+          expand="block"
+          class="entrar-btn"
+          type="submit"
+          [disabled]="formGroup.invalid">
+          Cadastrar
+        </ion-button>
+      </div>
+    </form>
+    <div class="cadastro-text">
+      Já possui uma conta? <a routerLink="/login-cliente">Faça login</a>
+    </div>
+  </div>
+</ion-content>

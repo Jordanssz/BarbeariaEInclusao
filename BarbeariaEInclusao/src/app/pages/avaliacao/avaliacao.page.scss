@@ -1,0 +1,48 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+ion-content.custom-bg {
+	--background: linear-gradient(135deg, #f5eee7 60%, #e9d5c0 100%);
+}
+
+.avaliacao-container {
+	width: 100%;
+	max-width: 480px;
+	margin: 0 auto;
+	padding: 18px 12px;
+}
+
+.avaliacao-card {
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 4px 16px #a8836b22;
+	padding: 18px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.avaliacao-title {
+	font-size: 18px;
+	font-weight: 600;
+	color: #222;
+}
+
+.stars-row {
+	display: flex;
+	gap: 6px;
+}
+.star-icon {
+	font-size: 28px;
+	color: #ffc107;
+}
+
+ion-textarea {
+	--background: #f6f2ee;
+	border-radius: 12px;
+	padding: 12px;
+}
+
+ion-button {
+	--border-radius: 12px;
+}

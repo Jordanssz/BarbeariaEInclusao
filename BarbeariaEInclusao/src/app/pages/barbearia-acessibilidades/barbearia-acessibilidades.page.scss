@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/* --- VARIÁVEIS DE CORES (Baseado na imagem do perfil escuro) --- */
+:root {
+  --ion-color-dark-bg: #121212; /* Fundo principal: Preto quase total */
+  --ion-color-dark-surface: #1e1e1e; /* Superfícies (itens de lista): Cinza escuro */
+  --ion-color-primary-accent: #a8836b; /* Marrom principal (destaque) */
+  --ion-color-secondary-accent: #c9a892; /* Creme/rosa claro (texto de destaque/voltar) */
+  --ion-color-text-light: #f0f0f0; /* Texto principal claro */
+  --ion-color-text-muted: #aaaaaa; /* Texto secundário */
+}
+
+/* --- TEMA ESCURO GERAL --- */
+.dark-bg {
+  --background: var(--ion-color-dark-bg);
+  background: var(--ion-color-dark-bg);
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.container {
+  max-width: 95vw;
+  margin: 0 auto;
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* --- BOTÃO VOLTAR E TÍTULOS --- */
+.voltar-btn {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 10;
+  color: var(--ion-color-secondary-accent);
+  font-weight: 600;
+  font-size: 16px;
+  --padding-start: 0;
+  --padding-end: 0;
+  --background: transparent;
+}
+
+.voltar-btn ion-icon {
+  font-size: 22px;
+  margin-right: 4px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 8px;
+  margin-top: 20px;
+}
+
+.subtitle-text {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    width: 100%;
+    max-width: 360px;
+    margin-bottom: 24px;
+}
+
+.dark-text {
+    color: var(--ion-color-text-light);
+}
+
+
+/* --- LISTA DE CARACTERÍSTICAS (Radio Group Items) --- */
+.caracteristicas-list {
+  width: 100%;
+  max-width: 360px;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.radio-group-item {
+  --background: var(--ion-color-dark-surface); /* Fundo do item mais claro que o BG */
+  --padding-start: 20px;
+  --padding-end: 10px;
+  --min-height: 65px; 
+  
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); 
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.caracteristica-nome {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ion-color-text-light);
+    margin: 0 0 2px 0;
+}
+
+.caracteristica-descricao {
+    font-size: 12px;
+    color: var(--ion-color-text-muted);
+    margin: 0;
+}
+
+
+/* --- ESTILIZAÇÃO DO RADIO GROUP (Sim/Não) --- */
+
+.caracteristicas-list {
+  width: 100%;
+  max-width: 360px;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.radio-group-item {
+  --background: var(--ion-color-dark-surface); 
+  --padding-start: 20px;
+  --padding-end: 10px;
+  --min-height: 65px; 
+  
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); 
+  border: 1px solid rgba(255, 255, 255, 0.05);
+
+  /* CRÍTICO: Flexbox no item para garantir a separação Label / Rádio */
+  --inner-padding-end: 10px; /* Redefine o padding interno */
+  display: flex; /* Força o flexbox */
+  align-items: center; /* Centraliza verticalmente */
+}
+
+/* Garante que o ion-label ocupe o máximo de espaço sem empurrar o rádio */
+.radio-group-item ion-label {
+    max-width: 70%; /* Dá espaço ao lado para os rádios */
+}
+
+/* --- ESTILIZAÇÃO DO RADIO GROUP (Sim/Não) --- */
+
+.radio-options {
+    /* CRÍTICO: Garante que o grupo de rádio fique sempre no final */
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    gap: 16px; 
+    
+    /* CRÍTICO: Força o grupo de rádio para a direita e garante que ele não seja coberto */
+    min-width: 100px; 
+    margin-left: auto; /* Empurra o grupo para a direita */
+    position: relative; /* Garante que o z-index funcione se necessário */
+    z-index: 10;
+}
+
+/* Estilo do label do rádio (Sim/Não) */
+.radio-options ion-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ion-color-text-light);
+    
+    /* CRÍTICO: Resetar o max-width herdado do item pai */
+    max-width: none; 
+}
+
+/* Opcional: Estilo visual para as opções Sim/Não */
+.radio-options ion-radio {
+    /* ... (mantenha os estilos existentes de cor e tamanho) ... */
+    margin-right: 4px; /* Espaço entre o círculo e a palavra */
+}
+
+
+/* --- BOTÃO SALVAR --- */
+.salvar-btn-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.salvar-btn {
+  /* Gradiente principal */
+  --background: linear-gradient(90deg, var(--ion-color-primary-accent) 70%, var(--ion-color-secondary-accent) 100%);
+  --border-radius: 25px; 
+  --box-shadow: 0 8px 25px rgba(168, 131, 107, 0.5); 
+  width: 200px; 
+  height: 50px; 
+  font-weight: 700;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.salvar-btn:hover,
+.salvar-btn:focus {
+  filter: brightness(1.1);
+  box-shadow: 0 10px 30px rgba(168, 131, 107, 0.7);
+  transform: scale(1.02);
+}
+
+/* Estado Desabilitado (Chave para a validação obrigatória) */
+.salvar-btn:disabled {
+    opacity: 0.3; /* Mais opacidade para indicar desabilitado */
+    pointer-events: none; 
+}
+
+
+/* --- Placeholder de Carregamento --- */
+.loading-placeholder {
+    width: 100%;
+    text-align: center;
+    padding-top: 100px;
+    color: var(--ion-color-text-muted);
+    font-weight: 500;
+}
+
+.loading-placeholder ion-spinner {
+    color: var(--ion-color-secondary-accent); 
+}

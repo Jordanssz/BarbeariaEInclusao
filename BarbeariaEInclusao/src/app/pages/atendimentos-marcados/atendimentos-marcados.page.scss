@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+/* Variáveis de Cores - alinhadas à paleta terrosa */
+:root {
+  --ion-color-primary: #a8836b; /* Marrom Terroso Principal */
+  --ion-color-secondary-dark: #7a5c44; /* Marrom Escuro de Destaque */
+  --ion-color-success-realizado: #4CAF50; /* Verde do status Realizado */
+  --ion-color-danger-cancelado: #F44336; /* Vermelho do status Cancelado */
+}
+
+/* Fundo e fonte principal */
+ion-content.custom-bg {
+  --background: linear-gradient(135deg, #f5eee7 60%, #e9d5c0 100%);
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: #444;
+}
+
+/* Toolbar */
+ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: #fff;
+}
+
+/* Container principal */
+.agendamento-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Cartões de atendimento */
+.atendimento-card {
+  --background: #fff;
+  border-radius: 16px;
+  margin: 0;
+  box-shadow: 0 4px 16px #a8836b33; /* sombra terrosa */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.atendimento-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px #a8836b44;
+}
+
+/* Diferenciação de status */
+.atendimento-card.realizado {
+  opacity: 0.9;
+  border-left: 5px solid var(--ion-color-success-realizado);
+}
+
+ion-card-header {
+  padding-bottom: 0;
+}
+
+/* Título do serviço */
+.servico-resumo {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ion-color-secondary-dark); /* marrom escuro */
+}
+
+/* Conteúdo dos cards */
+ion-card-content {
+  padding-top: 10px;
+}
+
+ion-card-content .resumo-texto {
+  font-size: 14px;
+  color: #777777;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+ion-card-content .resumo-texto ion-icon {
+  margin-right: 8px;
+  color: var(--ion-color-primary); /* ícones na cor principal */
+}
+
+ion-card-content .destaque {
+  font-weight: 600;
+  color: #444;
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  margin-left: 8px;
+}
+
+.status-agendado {
+  background: var(--ion-color-primary);
+}
+
+.status-realizado {
+  background: var(--ion-color-success-realizado);
+}
+
+.status-cancelado {
+  background: var(--ion-color-danger-cancelado);
+}
+
+/* Botão Cancelar - tons claros com texto vermelho */
+.cancelar-btn {
+  --background: #f4e9e0;
+  --color: var(--ion-color-danger-cancelado);
+  --border-radius: 12px;
+  font-weight: 600;
+  margin-top: 12px;
+  --box-shadow: none;
+}
+
+/* Botão “Serviço Realizado” - segue o verde do sucesso */
+ion-button[color="success-realizado"] {
+  --background: var(--ion-color-success-realizado);
+  --color: #fff;
+  --border-radius: 12px;
+  font-weight: 600;
+  margin-top: 12px;
+  opacity: 0.8;
+}

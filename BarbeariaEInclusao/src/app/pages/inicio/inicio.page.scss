@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+.custom-bg {
+  background: linear-gradient(135deg, #f5eee7 60%, #e9d5c0 100%);
+}
+.container {
+  max-width: 95vw;
+  margin: 0 auto;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+.logo-box {
+  background: #a8836b;
+  width: 90vw;
+  max-width: 320px;
+  height: 110px;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+  margin-top: 18px;
+  box-shadow: 0 8px 24px #a8836b33;
+}
+.logo-text {
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-family: 'Montserrat', Arial, sans-serif;
+  text-align: center;
+}
+.subtitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #a8836b;
+  margin-bottom: 28px;
+  text-align: center;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+.interrogação {
+  font-weight: 400;
+}
+.btns-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.inicio-btn {
+  --background: #a8836b;
+  --border-radius: 20px;
+  --box-shadow: 0 4px 16px #a8836b44;
+  width: 90vw;
+  max-width: 280px;
+  height: 54px;
+  font-weight: 600;
+  font-size: 19px;
+  text-transform: none;
+  letter-spacing: 1px;
+  color: #fff;
+  margin: 0;
+  box-shadow: 0 4px 16px #a8836b22;
+  transition: box-shadow 0.2s, transform 0.2s, filter 0.2s;
+}
+.inicio-btn:hover,
+.inicio-btn:focus {
+  filter: brightness(1.10);
+  box-shadow: 0 8px 32px #a8836b66;
+  transform: scale(1.04);
+}

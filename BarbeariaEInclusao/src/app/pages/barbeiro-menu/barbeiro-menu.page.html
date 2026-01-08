@@ -1,0 +1,174 @@
+
+<!-- Header customizado com menu lateral e logout -->
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <div class="header-icons">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+
+      <ion-title></ion-title>
+
+      <ion-buttons slot="end">
+
+  <!-- 🔔 Notificações -->
+  <ion-button
+    fill="clear"
+    class="icon-btn notification-btn"
+    aria-label="Notificações"
+    [routerLink]="['/notificacao-barbeiro']">
+
+    <ion-icon name="notifications-outline"></ion-icon>
+
+    <ion-badge
+      *ngIf="qtdSolicitacoesPendentes > 0"
+      class="notification-badge">
+      {{ qtdSolicitacoesPendentes }}
+    </ion-badge>
+
+  </ion-button>
+
+  <!-- 🚪 Logout -->
+  <ion-button
+    fill="clear"
+    class="icon-btn"
+    aria-label="Logout"
+    (click)="logout()">
+    <ion-icon name="log-out-outline"></ion-icon>
+  </ion-button>
+
+</ion-buttons>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" side="start">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item button [routerLink]="['/agenda-barbeiro']">
+              <ion-icon name="calendar-outline" slot="start"></ion-icon>
+              <ion-label>Agenda</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item button (click)="editarPerfil()">
+              <ion-icon name="create-outline" slot="start"></ion-icon>
+              <ion-label>Alterar Dados</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item button [routerLink]="['/barbeiro-tag']">
+              <ion-icon name="pricetags-outline" slot="start"></ion-icon>
+              <ion-label>Minhas Habilidades</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-item lines="none" class="separator-item"></ion-item>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item button color="danger" (click)="excluirPerfil()">
+              <ion-icon name="trash-outline" slot="start"></ion-icon>
+              <ion-label>Excluir Perfil</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+    <div class="ion-page" id="main-content">
+      <ion-header class="custom-header">
+        <ion-toolbar>
+          <div class="header-icons">
+            <ion-buttons slot="start">
+              <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+
+            <ion-buttons slot="end">
+              <ion-button fill="clear" class="icon-btn" aria-label="Logout" (click)="logout()">
+                <ion-icon name="log-out-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </div>
+          
+          <!-- Comentário recente removido: comentários aparecem apenas no final da página -->
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="custom-bg" [fullscreen]="true">
+        <div class="barbeiro-container">
+          <div class="barbeiro-top">
+            <div class="profile-pic-box">
+              <img [src]="barbeiro.fotoBarbeiro || 'assets/avatar-placeholder.svg'" alt="Avatar do Barbeiro"
+                class="profile-pic" onerror="this.onerror=null; this.src='assets/avatar-placeholder.svg';" />
+            </div>
+
+            <div class="barbeiro-info">
+              <div class="barbeiro-nome-edit">
+                <span class="barbeiro-nome">{{ barbeiro.nomeBarbeiro }}</span>
+              </div>
+              <div class="barbeiro-desc-edit">
+                <span class="barbeiro-desc">{{ barbeiro.descricaoBarbeiro }}</span>
+              </div>
+              <div class="barbeiro-codigo">
+                <span>Código de perfil: {{ barbeiro.idBarbeiro }}</span>
+              </div>
+              <div class="barbeiro-rating">
+                  <ng-container *ngFor="let star of [1,2,3,4,5]">
+                    <ion-icon [name]="getStarIcon(star)" class="star-icon"></ion-icon>
+                  </ng-container>
+                  <span class="avaliacao-label">({{ avaliacaoMedia | number:'1.1-1' }}) • {{ comentarios?.length || 0 }} avaliações</span>
+                <ion-button fill="clear" class="comentarios-btn" [routerLink]="'/comentarios'">
+                  <ion-icon name="chevron-forward-outline"></ion-icon>
+                </ion-button>
+              </div>
+
+              <div class="tags-section" *ngIf="tagsAtivas.length > 0">
+                <div class="tags-title">
+                  Habilidades:
+                </div>
+                <div class="tags-list">
+                  <ion-chip *ngFor="let tag of tagsAtivas" class="tag-chip">
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    <ion-label>{{ tag }}</ion-label>
+                  </ion-chip>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Lista completa de comentários (final da página) -->
+        <div class="comentarios-section" *ngIf="comentarios && comentarios.length > 0">
+          <div class="comentarios-title">Comentários</div>
+          <div class="comentario-card" *ngFor="let c of comentarios">
+            <div class="comentario-header">
+              <strong>{{ c.nomeUsuario }}</strong>
+              <span class="comentario-meta"> - {{ c.nomeServico }} • {{ c.nomeProfissional }}</span>
+            </div>
+            <div class="comentario-stars">
+              <ng-container *ngFor="let s of [1,2,3,4,5]">
+                <ion-icon [name]="( (Math.round((c.nota||0)*2)) >= (s*2 - 1) ? ( ( (Math.round((c.nota||0)*2)) >= s*2 ) ? 'star' : 'star-half' ) : 'star-outline' )" class="star-icon"></ion-icon>
+              </ng-container>
+              <span class="comentario-nota">({{ c.nota }})</span>
+            </div>
+            <div class="comentario-text">{{ c.comentario }}</div>
+          </div>
+        </div>
+      </ion-content>
+    </div>
+  </ion-split-pane>

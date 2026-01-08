@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+/* ======== FUNDO E CONTAINER ======== */
+ion-content.custom-bg {
+  --background: linear-gradient(160deg, #fcf9f6 0%, #f5eee7 100%);
+  color: #222;
+}
+
+.barbearia-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+/* ======== CABEÇALHO DA BARBEARIA ======== */
+.barbearia-top {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 20px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 18px #a8836b33;
+  padding: 16px;
+}
+
+.profile-pic {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 10px #a8836b33;
+}
+
+.barbearia-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.barbearia-nome {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2a1f18;
+}
+
+.barbearia-desc {
+  font-size: 14px;
+  color: #5c4d41;
+}
+
+.barbearia-endereco {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #6a5b4d;
+}
+
+.location-icon {
+  color: #a8836b;
+  font-size: 16px;
+  margin-right: 4px;
+}
+
+.barbearia-rating {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.star-icon {
+  color: #ffc107;
+  font-size: 18px;
+  margin-right: 2px;
+}
+
+.avaliacao-label {
+  font-size: 13px;
+  color: #333;
+  margin-left: 4px;
+}
+
+/* ======== SEÇÃO DE ACESSIBILIDADE ======== */
+.acessibilidade-section {
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 16px #a8836b22;
+  margin-top: 20px;
+}
+
+.acessibilidade-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2a1f18;
+  margin-bottom: 8px;
+}
+
+.acessibilidade-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.acessibilidade-chip {
+  --background: #f5eee7;
+  --color: #a8836b;
+  font-size: 13px;
+  border-radius: 10px;
+}
+
+/* ======== SEÇÃO DE SERVIÇOS ======== */
+.servicos-section {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.servicos-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2a1f18;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.servicos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.servico-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px #a8836b22;
+  padding: 12px;
+  gap: 12px;
+}
+
+.servico-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+  background-color: #f5eee7;
+}
+
+.servico-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.servico-nome {
+  font-weight: 600;
+  color: #2a1f18;
+  font-size: 15px;
+}
+
+.servico-preco {
+  font-weight: 500;
+  color: #a8836b;
+  font-size: 14px;
+}
+
+.servico-desc {
+  font-size: 13px;
+  color: #666;
+}
+
+.selecionar-btn {
+  --background: #a8836b;
+  --color: #fff;
+  border-radius: 12px;
+  font-size: 13px;
+  height: 34px;
+  padding: 0 14px;
+  font-weight: 600;
+}
+
+/* ======= SEÇÃO DE PROFISSIONAIS ======= */
+.profissionais-section {
+  width: 100%;
+  max-width: 400px;
+  padding: 18px 0 12px 0;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profissionais-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 16px;
+  text-align: left;
+  width: 100%;
+  padding: 0 12px;
+}
+
+.profissionais-list {
+  width: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 0 12px;
+}
+
+.profissional-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px #a8836b22;
+  padding: 12px 14px;
+  gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px #a8836b33;
+  }
+}
+
+.profissional-img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #f5eee7;
+  object-fit: cover;
+}
+
+.profissional-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.profissional-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.profissional-tag-chip {
+  --background: #f5eee7;
+  --color: #7a5c44;
+  font-size: 12px;
+  border-radius: 10px;
+}
+
+.profissional-nome {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profissional-role {
+  font-size: 14px;
+  color: #666;
+}
+
+.no-profissionais {
+  padding: 12px;
+  text-align: center;
+  color: #666;
+}
+
+.habilidades-section {
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 12px #a8836b22;
+  margin-top: 16px;
+}
+
+.habilidades-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2a1f18;
+  margin-bottom: 8px;
+}
+
+.habilidades-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.habilidade-chip {
+  --background: #f5eee7;
+  --color: #7a5c44;
+  font-size: 13px;
+}
+
+/* ======== SEÇÃO DE COMENTÁRIOS ======== */
+.comentarios-section {
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 4px 16px #a8836b22;
+  margin-top: 20px;
+}
+
+.comentarios-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2a1f18;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.comentario-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px #a8836b11;
+  border: 1px solid #f0e7df;
+}
+
+.comentario-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.comentario-header strong {
+  font-size: 14px;
+  color: #2a1f18;
+}
+
+.comentario-meta {
+  font-size: 13px;
+  color: #6a5b4d;
+}
+
+.comentario-stars {
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.comentario-stars .star-icon {
+  color: #ffc107;
+  font-size: 16px;
+  margin-right: 4px;
+}
+
+.comentario-nota {
+  font-size: 13px;
+  color: #333;
+  margin-left: 6px;
+}
+
+.comentario-text {
+  color: #555;
+  margin-top: 8px;
+  font-size: 14px;
+}

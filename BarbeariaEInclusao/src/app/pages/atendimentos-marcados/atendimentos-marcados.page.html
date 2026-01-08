@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/navegar-barbearias"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Meus Agendamentos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="custom-bg">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Meus Agendamentos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="agendamento-container ion-padding">
+
+    <!-- Indicador de Carregamento -->
+    <div *ngIf="isLoading" class="ion-text-center">
+      <ion-spinner name="crescent" color=""></ion-spinner>
+      <p class="resumo-texto">Carregando seus atendimentos...</p>
+    </div>
+
+    <!-- Mensagem de Erro ou Vazio -->
+    <div *ngIf="!isLoading && errorMessage" class="ion-text-center">
+      <ion-card>
+        <ion-card-content>
+          <p class="resumo-texto">{{ errorMessage }}</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Lista de Agendamentos -->
+    <ion-card *ngFor="let agendamento of atendimentos" class="atendimento-card"
+      [class.realizado]="agendamento.statusAtendimento === 'REALIZADO'">
+      <ion-card-header>
+        <!-- Título do Serviço -->
+        <ion-card-title class="servico-resumo">{{ agendamento.nomeServico }}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <!-- Detalhes do Profissional e Status -->
+        <div class="resumo-texto">
+          <ion-icon name="cut-outline"></ion-icon>
+          Profissional: <span class="destaque">{{ agendamento.nomeBarbeiro }}</span>
+        </div>
+
+        <div class="resumo-texto">
+          <ion-icon name="calendar-outline"></ion-icon>
+          Quando: <span class="destaque data-hora">{{ formatarDataHora(agendamento.dataAtendimento,
+            agendamento.horaAtendimento) }}</span>
+        </div>
+
+        <div class="resumo-texto">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          Status: <span class="status-badge status-{{ agendamento.statusAtendimento | lowercase }}">{{
+            agendamento.statusAtendimento }}</span>
+        </div>
+
+        <!-- Botão de Ação (Apenas para status AGENDADO) -->
+        <ion-button *ngIf="agendamento.statusAtendimento === 'AGENDADO'" expand="block" fill="clear" size="small"
+          class="cancelar-btn" color="danger" (click)="confirmarCancelamento(agendamento)">
+          Cancelar Agendamento
+        </ion-button>
+
+        <div *ngIf="agendamento.statusAtendimento === 'REALIZADO'">
+          <ion-button expand="block" fill="solid" size="small" color="success-realizado" disabled>
+            Serviço Realizado
+          </ion-button>
+          <ion-button *ngIf="!agendamento.jaAvaliado" expand="block" fill="clear" size="small" (click)="irAvaliar(agendamento)">
+            Avaliar Atendimento
+          </ion-button>
+          <ion-button *ngIf="agendamento.jaAvaliado" expand="block" fill="clear" size="small" color="medium" disabled>
+            Já avaliado
+          </ion-button>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

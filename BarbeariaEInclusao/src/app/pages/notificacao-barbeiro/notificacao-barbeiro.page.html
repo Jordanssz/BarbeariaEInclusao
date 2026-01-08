@@ -1,0 +1,95 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/barbeiro-menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Solicitações</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="custom-bg">
+
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Solicitações</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="agendamento-container ion-padding">
+
+    <!-- 🔄 Loading -->
+    <div *ngIf="isLoading" class="ion-text-center">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p class="resumo-texto">Carregando solicitações...</p>
+    </div>
+
+    <!-- ⚠️ Erro / vazio -->
+    <div *ngIf="!isLoading && errorMessage" class="ion-text-center">
+      <ion-card>
+        <ion-card-content>
+          <p class="resumo-texto">{{ errorMessage }}</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- 📩 Cards -->
+    <ion-card
+      *ngFor="let solicitacao of solicitacoes"
+      class="atendimento-card">
+
+      <ion-card-header>
+        <ion-card-title class="servico-resumo">
+          Solicitação de Barbearia
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <div class="resumo-texto">
+          <ion-icon name="storefront-outline"></ion-icon>
+          Barbearia:
+          <span class="destaque">{{ solicitacao.nomeBarbearia }}</span>
+        </div>
+
+        <div class="resumo-texto">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          Status:
+          <span
+            class="status-badge status-{{ solicitacao.estadoSolicitacao | lowercase }}">
+            {{ solicitacao.estadoSolicitacao }}
+          </span>
+        </div>
+
+        <!-- ✅ Ações -->
+        <ion-button
+          *ngIf="solicitacao.estadoSolicitacao === 'PENDENTE'"
+          expand="block"
+          size="small"
+          color="success"
+          (click)="confirmarAceite(solicitacao)">
+          Aceitar
+        </ion-button>
+
+        <ion-button
+          *ngIf="solicitacao.estadoSolicitacao === 'PENDENTE'"
+          expand="block"
+          size="small"
+          fill="outline"
+          color="danger"
+          (click)="confirmarRecusa(solicitacao)">
+          Recusar
+        </ion-button>
+
+        <ion-button
+          *ngIf="solicitacao.estadoSolicitacao !== 'PENDENTE'"
+          expand="block"
+          size="small"
+          disabled>
+          Solicitação {{ solicitacao.estadoSolicitacao }}
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

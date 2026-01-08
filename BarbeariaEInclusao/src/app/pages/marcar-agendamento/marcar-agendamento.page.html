@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Marcar Agendamento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="custom-bg ion-padding">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Marcar Agendamento</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="agendamento-container">
+
+    <!-- 💡 CORREÇÃO: Usando servicoSelecionado e verificando se ele existe. -->
+    <ion-card *ngIf="servicoSelecionado">
+      <ion-card-content>
+        <!-- 💡 ACESSO DIRETO: servicoSelecionado.nomeServico -->
+        <h2 class="servico-resumo">{{ servicoSelecionado.nomeServico }}</h2>
+        <!-- 💡 ACESSO DIRETO: servicoSelecionado.descricaoServico -->
+        <p class="resumo-texto">{{ servicoSelecionado.descricaoServico }}</p>
+        <!-- 💡 ACESSO DIRETO: servicoSelecionado.precoServico -->
+        <p class="servico-preco">Preço: {{ servicoSelecionado.precoServico | currency:'BRL':'symbol':'1.2-2' }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="agendamento-form">
+      <h2 class="agendamento-title">Escolha os detalhes do seu agendamento</h2>
+      <!-- Select do Profissional (exibe primeiro) -->
+      <ion-item>
+        <ion-label position="stacked">Profissional</ion-label>
+        <ion-select [(ngModel)]="profissionalSelecionado" placeholder="Selecione um profissional" (ionChange)="onProfissionalChange()">
+          <ion-select-option *ngFor="let p of profissionaisDisponiveis" [value]="p.id">
+            {{ p.nome }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Seletor de Data (aparece somente após escolher profissional) -->
+      <ion-item *ngIf="profissionalSelecionado">
+        <ion-label position="stacked">Data</ion-label>
+        <ion-datetime
+          presentation="date"
+          [(ngModel)]="dataSelecionada"
+          (ionChange)="onDataChange()"
+          placeholder="Selecione uma data">
+        </ion-datetime>
+      </ion-item>
+
+      <!-- Seletor de Horário (aparece somente após escolher data) -->
+      <ion-item *ngIf="dataSelecionada">
+        <ion-label position="stacked">Horário</ion-label>
+        <ion-select [(ngModel)]="horarioSelecionado" placeholder="Selecione um horário">
+          <ion-select-option *ngFor="let hora of allHorariosDisponiveis" [value]="hora" [disabled]="isHorarioOcupado(hora)">
+            {{ hora }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Botão para confirmar (aparece quando todos os campos estiverem preenchidos) -->
+      <ion-button *ngIf="profissionalSelecionado && dataSelecionada && horarioSelecionado" expand="block" class="confirmar-btn" (click)="abrirConfirmacao()">
+        Confirmar Agendamento
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

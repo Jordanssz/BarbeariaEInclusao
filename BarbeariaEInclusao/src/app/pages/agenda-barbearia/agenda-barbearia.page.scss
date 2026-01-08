@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+/* Variáveis de Cores - alinhadas à paleta terrosa */
+:root {
+  --ion-color-primary: #a8836b; /* Marrom Terroso Principal */
+  --ion-color-secondary-dark: #7a5c44; /* Marrom Escuro de Destaque */
+  --ion-color-success-realizado: #4CAF50; /* Verde do status Realizado */
+  --ion-color-danger-cancelado: #F44336; /* Vermelho do status Cancelado */
+}
+
+/* Fundo e fonte principal */
+ion-content.custom-bg {
+  --background: linear-gradient(135deg, #f5eee7 60%, #e9d5c0 100%);
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: #444;
+}
+
+/* Toolbar */
+ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: #fff;
+}
+
+/* Container principal */
+.agendamento-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Cartões de atendimento */
+.atendimento-card {
+  --background: #fff;
+  border-radius: 16px;
+  margin: 0;
+  box-shadow: 0 4px 16px #a8836b33; /* sombra terrosa */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.atendimento-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px #a8836b44;
+}
+
+/* Diferenciação de status */
+.atendimento-card.realizado {
+  opacity: 0.9;
+  border-left: 5px solid var(--ion-color-success-realizado);
+}
+
+ion-card-header {
+  padding-bottom: 0;
+}
+
+/* Título do serviço */
+.servico-resumo {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ion-color-secondary-dark); /* marrom escuro */
+}
+
+/* Conteúdo dos cards */
+ion-card-content {
+  padding-top: 10px;
+}
+
+ion-card-content .resumo-texto {
+  font-size: 14px;
+  color: #777777;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+ion-card-content .resumo-texto ion-icon {
+  margin-right: 8px;
+  color: var(--ion-color-primary); /* ícones na cor principal */
+}
+
+ion-card-content .destaque {
+  font-weight: 600;
+  color: #444;
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  margin-left: 8px;
+}
+
+.status-agendado {
+  background: var(--ion-color-primary);
+}
+
+.status-realizado {
+  background: var(--ion-color-success-realizado);
+}
+
+.status-cancelado {
+  background: var(--ion-color-danger-cancelado);
+}
+
+/* Botão Cancelar - tons claros com texto vermelho */
+.cancelar-btn {
+  --background: #f4e9e0;
+  --color: var(--ion-color-danger-cancelado);
+  --border-radius: 12px;
+  font-weight: 600;
+  margin-top: 12px;
+  --box-shadow: none;
+}
+
+/* Botão "Serviço Realizado" - segue o verde do sucesso */
+ion-button[color="success-realizado"] {
+  --background: var(--ion-color-success-realizado);
+  --color: #fff;
+  --border-radius: 12px;
+  font-weight: 600;
+  margin-top: 12px;
+  opacity: 0.8;
+}
+
+/* ======= Calendário (mesmo estilo da agenda do barbeiro) ======= */
+.calendar-wrapper {
+  width: 100vw; /* ocupa toda a largura da viewport */
+  margin-left: calc(50% - 50vw);
+  padding: 8px 12px;
+  box-sizing: border-box;
+  height: calc(100vh - 120px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.nav-btn {
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+.month-title {
+  font-weight: 700;
+}
+.week-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.calendar-grid {
+  display: block;
+}
+.week-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex: 1;
+}
+.calendar-cell {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 6px 18px #a8836b11;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+}
+.calendar-cell.other-month {
+  opacity: 0.45;
+}
+.cell-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.cell-day {
+  font-weight: 700;
+}
+.cell-count {
+  font-size: 12px;
+  color: #7a5c44;
+}
+.cell-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow: auto;
+}
+.appt-chip {
+  background: #f4e9e0;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #444;
+}
+.more {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Indicador simples para dias com agendamento */
+.has-appt-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ion-color-primary);
+  margin: 6px auto 0 auto;
+}
+
+.selected-list {
+  margin-top: 12px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 6px 18px #a8836b11;
+  max-height: 220px;
+  overflow: auto;
+}
+
+.detail-item {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px dashed #eee;
+}
+.detail-time {
+  font-weight: 700;
+  width: 60px;
+}
+.detail-info .detail-service {
+  font-weight: 600;
+}
+.detail-info .detail-client, .detail-info .detail-prof {
+  font-size: 13px;
+  color: #666;
+}

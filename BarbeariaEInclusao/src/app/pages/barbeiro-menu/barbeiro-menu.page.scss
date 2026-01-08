@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+.custom-header ion-toolbar {
+  --padding-start: 0;
+  --padding-end: 8px;
+}
+
+.header-icons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+ion-menu {
+  --width: 280px;
+}
+
+ion-menu ion-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+}
+
+ion-menu ion-item ion-icon {
+  margin-right: 10px;
+}
+
+.separator-item {
+  --min-height: 1px;
+  --background: #555;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.custom-bg {
+  background-image: url('/assets/img/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.barbeiro-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 18px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.barbeiro-top {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 18px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.profile-pic-box {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 16px #a8836b22;
+  object-fit: cover;
+  border: 4px solid #f5eee7;
+}
+
+.barbeiro-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.barbeiro-nome-edit {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 600;
+  color: #222;
+  gap: 4px;
+}
+
+.barbeiro-desc-edit {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #444;
+  gap: 4px;
+}
+
+.barbeiro-codigo {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.barbeiro-rating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.star-icon {
+  color: #ffc107;
+  font-size: 22px;
+}
+
+.avaliacao-label {
+  font-size: 13px;
+  color: #888;
+  margin-left: 8px;
+}
+
+.comentarios-btn {
+  --background: transparent;
+  color: #a8836b;
+  font-size: 18px;
+  margin-left: 2px;
+  height: 22px;
+  width: 22px;
+}
+
+.tags-section {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  width: 100%;
+}
+
+.tags-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #a8836b;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-chip {
+  --background: #a8836b;
+  --color: #ffffff;
+  height: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 15px;
+  padding: 0 10px;
+}
+
+.tag-chip ion-icon {
+  font-size: 16px;
+  margin-right: 4px;
+  color: #ffffff;
+}
+
+.notification-btn {
+  position: relative;
+}
+
+/* 🔴 Badge de solicitações */
+.notification-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: #f44336;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}

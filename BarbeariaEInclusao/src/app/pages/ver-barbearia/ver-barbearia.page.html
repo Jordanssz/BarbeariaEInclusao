@@ -1,0 +1,114 @@
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="custom-bg" [fullscreen]="true">
+  <div class="barbearia-container">
+
+    <div class="barbearia-top">
+      <div class="profile-pic-box">
+        <img [src]="barbearia.fotoBarbearia || 'assets/avatar-placeholder.svg'" 
+             alt="Foto da Barbearia" class="profile-pic" />
+      </div>
+
+      <div class="barbearia-info">
+        <span class="barbearia-nome">{{ barbearia.nomeBarbearia }}</span>
+        <span class="barbearia-desc">{{ barbearia.descricaoBarbearia }}</span>
+        <div class="barbearia-endereco">
+          <ion-icon name="location-outline" class="location-icon"></ion-icon>
+          <span>{{ enderecoCompleto }}</span>
+        </div>
+
+        <div class="barbearia-rating">
+          <ng-container *ngFor="let star of [1,2,3,4,5]">
+            <ion-icon [name]="getStarIcon(star)" class="star-icon"></ion-icon>
+          </ng-container>
+          <span class="avaliacao-label">({{ avaliacaoMedia | number:'1.1-1' }}) • {{ comentarios?.length || 0 }} avaliações</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Comentário recente removido do topo por solicitação do usuário -->
+
+    <div class="acessibilidade-section" *ngIf="caracteristicasAcessiveis.length > 0">
+      <div class="acessibilidade-title">Características de acessibilidade</div>
+      <div class="acessibilidade-tags">
+        <ion-chip *ngFor="let nome of caracteristicasAcessiveis" class="acessibilidade-chip">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+          <ion-label>{{ nome }}</ion-label>
+        </ion-chip>
+      </div>
+    </div>
+
+    <div class="habilidades-section" *ngIf="habilidadesProfissionais && habilidadesProfissionais.length > 0">
+      <div class="habilidades-title">Habilidades dos Profissionais</div>
+      <div class="habilidades-tags">
+        <ion-chip *ngFor="let t of habilidadesProfissionais" class="habilidade-chip">
+          <ion-icon name="sparkles-outline"></ion-icon>
+          <ion-label>{{ t }}</ion-label>
+        </ion-chip>
+      </div>
+    </div>
+
+    <div class="servicos-section">
+      <div class="servicos-title">Serviços disponíveis</div>
+      <div class="servicos-list">
+        <div class="servico-card" *ngFor="let servico of servicos">
+          <img [src]="servico.fotoServico || 'assets/no-image.svg'" alt="Imagem do serviço" class="servico-img" />
+          <div class="servico-info">
+            <span class="servico-nome">{{ servico.nomeServico }}</span>
+            <span class="servico-preco">R${{ servico.precoServico | number:'1.2-2' }}</span>
+            <span class="servico-desc">{{ servico.descricaoServico }}</span>
+          </div>
+          <ion-button expand="block" class="selecionar-btn" (click)="selecionarServico(servico)">
+            Selecionar
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="profissionais-section">
+      <div class="profissionais-title">Profissionais</div>
+      <div class="profissionais-list">
+        <div class="profissional-card" *ngFor="let p of profissionais">
+          <img [src]="p.fotoProfissional || 'assets/avatar-placeholder.svg'" alt="Foto do Profissional" class="profissional-img" />
+          <div class="profissional-info">
+            <span class="profissional-nome">{{ p.nomeProfissional || p.nome || p.apelido }}</span>
+            <span class="profissional-role" *ngIf="p.funcao">{{ p.funcao }}</span>
+            <div class="profissional-tags" *ngIf="p.tags && p.tags.length > 0">
+              <ion-chip *ngFor="let t of p.tags" class="profissional-tag-chip">
+                <ion-icon name="pricetags-outline"></ion-icon>
+                <ion-label>{{ t }}</ion-label>
+              </ion-chip>
+            </div>
+          </div>
+        </div>
+        <div class="no-profissionais" *ngIf="profissionais.length === 0">
+          Nenhum profissional cadastrado ainda.
+        </div>
+      </div>
+    </div>
+    
+    <!-- Lista completa de comentários (final da página) -->
+    <div class="comentarios-section" *ngIf="comentarios && comentarios.length > 0">
+      <div class="comentarios-title">Comentários</div>
+      <div class="comentario-card" *ngFor="let c of comentarios">
+        <div class="comentario-header">
+          <strong>{{ c.nomeUsuario }}</strong>
+          <span class="comentario-meta"> - {{ c.nomeServico }}</span>
+        </div>
+        <div class="comentario-stars">
+          <ng-container *ngFor="let s of [1,2,3,4,5]">
+            <ion-icon [name]="( (Math.round((c.nota||0)*2)) >= (s*2 - 1) ? ( ( (Math.round((c.nota||0)*2)) >= s*2 ) ? 'star' : 'star-half' ) : 'star-outline' )" class="star-icon"></ion-icon>
+          </ng-container>
+          <span class="comentario-nota">({{ c.nota }})</span>
+        </div>
+        <div class="comentario-text">{{ c.comentario }}</div>
+      </div>
+    </div>
+  </div>
+</ion-content>

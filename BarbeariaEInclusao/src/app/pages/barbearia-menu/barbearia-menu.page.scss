@@ -1,0 +1,630 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+.custom-header ion-toolbar {
+  --padding-start: 0; /* Remove padding padrão do toolbar */
+  --padding-end: 8px;
+}
+
+.header-icons {
+  display: flex;
+  justify-content: space-between; /* Para manter o logout na direita */
+  width: 100%;
+}
+
+/* Os botões foram removidos, então vamos ocultar o wrapper ou ajustá-lo */
+.alterar-dados-btn-wrapper {
+  /* O conteúdo dessa div foi movido para o menu, 
+     você pode ocultá-la se não for mais usada 
+     ou apenas garantir que não ocupe espaço, 
+     mas a remoção do HTML já resolve isso. */
+  display: none; /* Oculta o wrapper que não tem mais botões */
+}
+
+/* Estilização para os itens do menu (Opcional, mas melhora a aparência) */
+ion-menu {
+  --width: 280px; /* Largura do menu */
+}
+
+ion-menu ion-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+}
+
+ion-menu ion-item ion-icon {
+  margin-right: 10px;
+}
+
+/* Estilo para a linha separadora no menu */
+.separator-item {
+  --min-height: 1px;
+  --background: #555; /* Cor da linha separadora, ajuste se necessário */
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.custom-bg {
+  background: linear-gradient(160deg, #fcf9f6 0%, #f5eee7 100%);
+  min-height: 100vh;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(168, 131, 107, 0.03) 0%, rgba(245, 238, 231, 0.05) 100%);
+    pointer-events: none;
+  }
+}
+
+.barbearia-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 18px 0 0 0;
+  padding-bottom: 160px; /* espaço extra para permitir scroll até o botão */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.barbearia-top {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 18px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.profile-pic-box {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 16px #a8836b22;
+  object-fit: cover;
+  border: 4px solid #f5eee7;
+}
+.camera-btn {
+  position: absolute;
+  bottom: 4px;
+  left: 8px;
+  background: #fff;
+  border-radius: 50%;
+  border: none;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px #a8836b22;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0;
+}
+.camera-icon {
+  font-size: 16px;
+  color: #a8836b;
+}
+
+.barbearia-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.barbearia-nome-edit {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 600;
+  color: #222;
+  gap: 4px;
+}
+.barbearia-desc-edit,
+.barbearia-endereco-edit {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #444;
+  gap: 4px;
+}
+.edit-btn {
+  --background: transparent;
+  color: #a8836b;
+  font-size: 16px;
+  margin-left: 2px;
+  margin-right: 0;
+  height: 24px;
+  width: 24px;
+}
+.barbearia-endereco {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.location-icon {
+  font-size: 16px;
+  color: #a8836b;
+  margin-right: 2px;
+}
+.barbearia-rating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 2px;
+}
+.star-icon {
+  color: #ffc107;
+  font-size: 22px;
+}
+.avaliacao-label {
+  font-size: 13px;
+  color: #888;
+  margin-left: 8px;
+}
+.comentarios-btn {
+  --background: transparent;
+  color: #a8836b;
+  font-size: 18px;
+  margin-left: 2px;
+  height: 22px;
+  width: 22px;
+}
+
+.comentarios-section {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 12px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px #a8836b22;
+  padding: 12px 14px;
+  overflow: visible;
+}
+.comentario-card {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 12px;
+  padding: 12px;
+  background: #f9f6f2;
+  border-radius: 12px;
+  line-height: 1.4;
+  box-shadow: 0 2px 8px #a8836b11;
+}
+.comentario-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.comentario-meta {
+  color: #666;
+  font-size: 13px;
+}
+.comentario-stars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.comentario-text {
+  color: #333;
+}
+
+.comentario {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 12px;
+  padding: 12px;
+  background: #f5eee7;
+  border-radius: 12px;
+  line-height: 1.4;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.servicos-section {
+  width: 100%;
+  max-width: 400px;
+  padding: 18px 0 12px 0;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.servicos-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 16px;
+  text-align: left;
+  width: 100%;
+  padding: 0 12px;
+}
+.servicos-list {
+  width: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 0 12px;
+}
+.servico-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px #a8836b22;
+  padding: 12px 14px;
+  gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px #a8836b33;
+  }
+}
+.servico-img {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: #f5eee7;
+  object-fit: cover;
+}
+.servico-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.servico-nome {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.servico-preco {
+  font-size: 15px;
+  color: #a8836b;
+  font-weight: 500;
+}
+.editar-servico-btn {
+  --background: transparent;
+  --color: #a8836b;
+  --border-radius: 16px;
+  --border-style: solid;
+  --border-width: 1px;
+  --border-color: #a8836b;
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 70px;
+  height: 34px;
+  margin-left: 8px;
+  
+  &:hover {
+    --background: #a8836b15;
+  }
+}
+.adicionar-servico-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 0 12px;
+}
+.adicionar-servico-btn {
+  --background: #a8836b;
+  --color: #fff;
+  --border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  height: 44px;
+  box-shadow: 0 4px 16px #a8836b33;
+  
+  &:hover {
+    --background: #96735d;
+  }
+}
+
+/* ======= Profissionais (nova seção) ======= */
+.profissionais-section {
+  width: 100%;
+  max-width: 400px;
+  padding: 18px 0 12px 0;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profissionais-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 16px;
+  text-align: left;
+  width: 100%;
+  padding: 0 12px;
+}
+.profissionais-list {
+  width: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 0 12px;
+}
+.profissional-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px #a8836b22;
+  padding: 12px 14px;
+  gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px #a8836b33;
+  }
+}
+.profissional-img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #f5eee7;
+  object-fit: cover;
+}
+.profissional-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.profissional-nome {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.profissional-role {
+  font-size: 14px;
+  color: #666;
+}
+.profissional-actions ion-button {
+  --background: transparent;
+  --color: #a8836b;
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 70px;
+  height: 34px;
+}
+.no-profissionais {
+  padding: 12px;
+  text-align: center;
+  color: #666;
+}
+
+/* ======= Interação para adicionar profissional ======= */
+.add-profissional-bar {
+  width: 100%;
+  max-width: 340px;
+  margin: 16px auto 0 auto;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 2px 8px #a8836b22;
+  display: flex;
+  align-items: center;
+  padding: 6px 12px 6px 8px;
+  gap: 10px;
+  position: sticky;
+  bottom: 16px;
+  z-index: 6;
+}
+.profissional-icon {
+  font-size: 28px;
+  color: #a8836b;
+  display: flex;
+  align-items: center;
+}
+.add-profissional-btn {
+  background: none;
+  border: none;
+  color: #a8836b;
+  font-size: 15px;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 8px 16px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px #a8836b11;
+  background: #f5eee7;
+  transition: background 0.2s;
+  
+}
+
+.texto-add-profissional {
+  color: white
+}
+.add-profissional-btn:hover {
+  background: #e9d5c0;
+}
+
+.add-profissional-box {
+  width: 100%;
+  max-width: 340px;
+  margin: 16px auto 0 auto;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 2px 8px #a8836b22;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 18px 18px 18px;
+  gap: 12px;
+  position: relative;
+}
+.profissional-icon-box {
+  position: absolute;
+  top: 12px;
+  left: 18px;
+  font-size: 28px;
+  color: #a8836b;
+}
+.codigo-profissional-input {
+  width: 100%;
+  max-width: 220px;
+  margin: 0 auto;
+  padding: 10px 18px 10px 38px;
+  border-radius: 18px;
+  border: none;
+  background: #ededed;
+  font-size: 15px;
+  color: #888;
+  font-family: 'Montserrat', Arial, sans-serif;
+  box-shadow: 0 2px 8px #a8836b11;
+  outline: none;
+}
+.profissional-buttons {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 8px;
+}
+.confirmar-add-btn {
+  width: 120px;
+  background: #a8836b;
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Montserrat', Arial, sans-serif;
+  padding: 10px 0;
+  box-shadow: 0 2px 8px #a8836b22;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+.confirmar-add-btn:hover {
+  filter: brightness(1.08);
+}
+.cancelar-add-btn {
+  width: 120px;
+  background: #e0e0e0;
+  color: #666;
+  border: none;
+  border-radius: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Montserrat', Arial, sans-serif;
+  padding: 10px 0;
+  box-shadow: 0 2px 8px #a8836b11;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+.cancelar-add-btn:hover {
+  filter: brightness(0.95);
+}
+
+.adicionar-profissional-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 0 12px;
+}
+.adicionar-profissional-btn {
+  --background: #a8836b;
+  --color: #fff;
+  --border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  height: 44px;
+  box-shadow: 0 4px 16px #a8836b33;
+  
+  &:hover {
+    --background: #96735d;
+  }
+}
+
+.acessibilidade-section {
+    width: 100%;
+    max-width: 400px;
+    margin: 24px auto 0;
+    padding: 20px 16px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px #a8836b22;
+}
+
+.acessibilidade-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.acessibilidade-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.acessibilidade-chip {
+    --background: #f5eee7;
+    --color: #a8836b;
+    height: 36px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 18px;
+    padding: 0 16px;
+    transition: all 0.2s ease;
+    
+    &:hover {
+        --background: #a8836b15;
+    }
+    
+    &.active {
+        --background: #a8836b;
+        --color: #ffffff;
+    }
+}
+
+.acessibilidade-chip ion-icon {
+    font-size: 18px;
+    margin-right: 6px;
+    color: currentColor;
+}

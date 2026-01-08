@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+/* Cores de Fundo e Fonte Principal */
+ion-content.custom-bg {
+  /* Gradiente da sua página de referência */
+  --background: linear-gradient(135deg, #f5eee7 60%, #e9d5c0 100%);
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: #444; /* Cor do texto mais escuro */
+}
+
+/* Cor da Toolbar */
+ion-toolbar {
+  --background: #a8836b; /* Cor primária: Marrom Terroso */
+  --color: #ffffff; /* Texto branco */
+}
+
+.agendamento-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Cartão de Informações do Serviço */
+ion-card {
+  --background: #fff;
+  border-radius: 16px;
+  /* Sombra levemente terrosa */
+  box-shadow: 0 4px 16px #a8836b33; 
+}
+
+.servico-resumo {
+  font-size: 18px;
+  font-weight: 600;
+  color: #444;
+}
+
+.resumo-texto {
+  font-size: 14px;
+  color: #777777; /* Texto secundário em cinza */
+  margin-bottom: 6px;
+}
+
+.servico-preco {
+  /* Cor de destaque secundária para o preço, seguindo a paleta */
+  color: #7a5c44; 
+  font-weight: 600;
+}
+
+/* Formulário de Agendamento */
+.agendamento-form {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  /* Sombra mais escura do formulário */
+  box-shadow: 0 4px 16px #a8836b22; 
+}
+
+.agendamento-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #7a5c44; /* Título com cor secundária mais escura */
+}
+
+/* Estilo dos Itens (Inputs/Selects) */
+ion-item {
+  --background: transparent;
+  /* Remove a borda padrão e usa a sombra do formulário como separador sutil */
+  --border-color: transparent; 
+  --inner-border-width: 0;
+  margin-bottom: 8px;
+  color: #444;
+  
+  /* Adicionando um leve sombreamento para distinguir os campos,
+     similar ao estilo 'input-item' da sua referência */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #a8836b11;
+  transition: box-shadow 0.2s;
+}
+
+/* Botão de Confirmação */
+.confirmar-btn {
+  /* Gradiente do seu botão 'entrar-btn' */
+  --background: linear-gradient(90deg, #a8836b 70%, #c9a892 100%);
+  --color: #fff;
+  font-weight: 600;
+  --border-radius: 12px;
+  margin-top: 14px;
+  /* Sombra do seu botão 'entrar-btn' */
+  --box-shadow: 0 4px 16px #a8836b44;
+  transition: box-shadow 0.2s, transform 0.2s, filter 0.2s;
+}
+
+.confirmar-btn:hover,
+.confirmar-btn:focus {
+  filter: brightness(1.10);
+  box-shadow: 0 8px 32px #a8836b66;
+  transform: scale(1.02);
+}
+
+/* ======== ALERT STYLING (Se necessário) ======== */
+.agendamento-alert .alert-button-cancel {
+  color: #7a5c44; /* Cor secundária para cancelar */
+  font-weight: 600;
+}
+
+.agendamento-alert .alert-button-confirm {
+  --background: #a8836b; /* Cor primária para confirmar */
+  color: #fff;
+  font-weight: 600;
+  border-radius: 6px;
+}

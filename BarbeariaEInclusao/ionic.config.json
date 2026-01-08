@@ -1,0 +1,7 @@
+{
+  "name": "BarbeariaEInclusao",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

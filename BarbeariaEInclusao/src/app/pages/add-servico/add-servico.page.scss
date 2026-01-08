@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+.custom-header {
+  background: #a8836b;
+  .header-toolbar {
+    display: flex;
+    align-items: center;
+    height: 48px;
+  }
+  .voltar-btn {
+    --background: transparent;
+    color: #fff;
+    font-size: 26px;
+    margin-left: 0;
+  }
+}
+
+.custom-bg {
+  background: linear-gradient(135deg, #f5eee7 60%, #e9d5c0 100%);
+}
+
+.add-servico-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 24px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.servico-top {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.servico-img-box {
+  width: 110px;
+  height: 110px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px #a8836b22;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.servico-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.servico-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 6px;
+  width: 220px;
+}
+.servico-info-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.servico-label {
+  font-size: 15px;
+  color: #222;
+}
+
+// NOVO: campos de texto no padrão das páginas anexadas
+ion-input,
+ion-textarea {
+  --background: #fff;
+  --padding-start: 18px;
+  --padding-end: 18px;
+  --min-height: 48px;
+  --border-radius: 22px;
+  --box-shadow: 0 2px 12px #a8836b22;
+  font-size: 16px;
+  color: #444;
+  font-family: 'Montserrat', Arial, sans-serif;
+  border-radius: 22px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 12px #a8836b22;
+  transition: box-shadow 0.2s, transform 0.2s;
+  background: #fff;
+}
+ion-input:focus,
+ion-textarea:focus {
+  box-shadow: 0 4px 24px #a8836b44;
+  transform: scale(1.02);
+}
+ion-input[formControlName], 
+ion-textarea[formControlName] {
+  width: 100%;
+}
+
+.edit-btn {
+  --background: transparent;
+  color: #a8836b;
+  font-size: 16px;
+  height: 22px;
+  width: 22px;
+  margin-left: 2px;
+}
+
+.add-profissional-bar {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto 32px auto;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 2px 8px #a8836b22;
+  display: flex;
+  align-items: center;
+  padding: 6px 12px 6px 8px;
+  gap: 10px;
+}
+.profissional-icon {
+  font-size: 28px;
+  color: #a8836b;
+  display: flex;
+  align-items: center;
+}
+.add-profissional-btn {
+  background: none;
+  border: none;
+  color: #a8836b;
+  font-size: 15px;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 8px 16px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px #a8836b11;
+  background: #f5eee7;
+  transition: background 0.2s;
+}
+.add-profissional-btn:hover {
+  background: #e9d5c0;
+}
+
+.add-profissional-box {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto 32px auto;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 2px 8px #a8836b22;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 18px 18px 18px;
+  gap: 12px;
+  position: relative;
+}
+.profissional-icon-box {
+  position: absolute;
+  top: 12px;
+  left: 18px;
+  font-size: 28px;
+  color: #a8836b;
+}
+.codigo-profissional-input {
+  width: 100%;
+  max-width: 220px;
+  margin: 0 auto;
+  padding: 10px 18px 10px 38px;
+  border-radius: 18px;
+  border: none;
+  background: #ededed;
+  font-size: 15px;
+  color: #888;
+  font-family: 'Montserrat', Arial, sans-serif;
+  box-shadow: 0 2px 8px #a8836b11;
+  outline: none;
+}
+.confirmar-add-btn {
+  width: 100%;
+  max-width: 120px;
+  margin: 0 auto;
+  background: #a8836b;
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Montserrat', Arial, sans-serif;
+  padding: 10px 0;
+  margin-top: 12px;
+  box-shadow: 0 2px 8px #a8836b22;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+.confirmar-add-btn:hover {
+  filter: brightness(1.08);
+}
+
+.salvar-servico-btn {
+  width: 90%;
+  max-width: 320px;
+  margin: 32px auto 0 auto;
+  background: #a8836b;
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Montserrat', Arial, sans-serif;
+  padding: 12px 0;
+  box-shadow: 0 4px 16px #a8836b22;
+  cursor: pointer;
+  transition: filter 0.2s;
+  display: block;
+}
+.salvar-servico-btn:hover {
+  filter: brightness(1.08);
+}

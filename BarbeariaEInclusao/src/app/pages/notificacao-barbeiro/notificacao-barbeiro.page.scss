@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+:root {
+  --ion-color-primary: #a8836b;
+  --ion-color-secondary-dark: #7a5c44;
+  --ion-color-success-realizado: #4CAF50;
+  --ion-color-danger-cancelado: #F44336;
+}
+
+/* Fundo */
+ion-content.custom-bg {
+  --background: linear-gradient(135deg, #f5eee7 60%, #e9d5c0 100%);
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: #444;
+}
+
+/* Toolbar */
+ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: #fff;
+}
+
+/* Container */
+.agendamento-container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Card */
+.atendimento-card {
+  --background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px #a8836b33;
+}
+
+/* Título */
+.servico-resumo {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ion-color-secondary-dark);
+}
+
+/* Texto */
+.resumo-texto {
+  font-size: 14px;
+  color: #777;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.resumo-texto ion-icon {
+  margin-right: 8px;
+  color: var(--ion-color-primary);
+}
+
+.destaque {
+  font-weight: 600;
+  color: #444;
+}
+
+/* Badge */
+.status-badge {
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  margin-left: 8px;
+}
+
+.status-pendente {
+  background: var(--ion-color-primary);
+}
+
+.status-aceito {
+  background: var(--ion-color-success-realizado);
+}
+
+.status-recusado {
+  background: var(--ion-color-danger-cancelado);
+}

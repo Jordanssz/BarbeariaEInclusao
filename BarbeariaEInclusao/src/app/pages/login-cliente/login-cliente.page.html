@@ -1,0 +1,40 @@
+<ion-content [fullscreen]="true" class="custom-bg">
+  <div class="container">
+    <ion-button fill="clear" class="voltar-btn" routerLink="/inicio">
+      <ion-icon name="arrow-back" slot="start"></ion-icon>
+      Início
+    </ion-button>
+    <div class="logo-box">
+      <span class="logo-text">Barbearia e Inclusão</span>
+    </div>
+    <div class="cliente-title">
+      <b>Cliente</b>
+    </div>
+    
+    <!-- 1. VINCULAÇÃO DO FORMULARIO COM O FORMGROUP E A FUNÇÃO login() -->
+    <form [formGroup]="formGroup" (ngSubmit)="login()">
+      <ion-item lines="none" class="input-item">
+        <ion-icon name="mail-outline" slot="start" class="input-icon"></ion-icon>
+        <!-- 2. VINCULAÇÃO DO CAMPO 'email' -->
+        <ion-input placeholder="Email*" type="email" formControlName="email"></ion-input>
+      </ion-item>
+      
+      <ion-item lines="none" class="input-item">
+        <ion-icon name="lock-closed-outline" slot="start" class="input-icon"></ion-icon>
+        <!-- 2. VINCULAÇÃO DO CAMPO 'senha' -->
+        <ion-input placeholder="Senha*" type="password" formControlName="senha"></ion-input>
+      </ion-item>
+      
+      <div class="entrar-btn-wrapper">
+        <!-- 3. BOTAO: O type="submit" dentro do form aciona o (ngSubmit) -->
+        <ion-button expand="block" class="entrar-btn" shape="round" type="submit" [disabled]="formGroup.invalid">
+          Entrar
+        </ion-button>
+      </div>
+    </form>
+    
+    <div class="cadastro-text">
+      Não possui uma conta? <a routerLink="/cadastro-cliente"><b>Cadastre-se</b></a>
+    </div>
+  </div>
+</ion-content>

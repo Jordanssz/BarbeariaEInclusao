@@ -1,0 +1,83 @@
+<ion-content class="custom-bg" [fullscreen]="true">
+  <div class="container">
+    
+    <!-- Botão de voltar -->
+    <ion-button fill="clear" class="voltar-btn" routerLink="/inicio">
+      <ion-icon name="arrow-back" slot="start"></ion-icon>
+      Início
+    </ion-button>
+
+    <!-- Box da foto de perfil -->
+    <div class="profile-pic-box">
+      <img [src]="fotoPreview || 'assets/avatar-placeholder.svg'" alt="Avatar" class="profile-pic" />
+      <button class="camera-btn" type="button" (click)="triggerFileInput()">
+        <ion-icon name="camera" class="camera-icon"></ion-icon>
+      </button>
+      <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" hidden>
+    </div>
+
+    <!-- Formulário de cadastro -->
+    <form [formGroup]="formGroup" (ngSubmit)="cadastrar()">
+      <ion-item class="input-item" lines="none">
+        <ion-input
+          formControlName="nomeBarbeiro"
+          placeholder="Nome completo*"
+          type="text"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="input-item" lines="none">
+        <ion-input
+          formControlName="emailBarbeiro"
+          placeholder="Email*"
+          type="email"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="input-item" lines="none">
+        <ion-input
+          formControlName="telefoneBarbeiro"
+          placeholder="Telefone*"
+          type="tel"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="input-item" lines="none">
+        <ion-input
+          formControlName="senhaBarbeiro"
+          placeholder="Senha*"
+          type="password"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="input-item textarea-item" lines="none">
+        <ion-textarea
+          formControlName="descricaoBarbeiro"
+          placeholder="Descrição*"
+          rows="4"
+          autoGrow="true"
+          required>
+        </ion-textarea>
+      </ion-item>
+
+      <div class="entrar-btn-wrapper">
+        <ion-button
+          expand="block"
+          class="entrar-btn"
+          type="submit"
+          [disabled]="formGroup.invalid">
+          Cadastrar
+        </ion-button>
+      </div>
+    </form>
+
+    <div class="cadastro-text">
+      Já possui uma conta? <a routerLink="/login-profissional">Faça login</a>
+    </div>
+
+  </div>
+</ion-content>

@@ -1,0 +1,63 @@
+<ion-content class="dark-bg" [fullscreen]="true">
+  <div class="container dark-container">
+    
+    <ion-button fill="clear" class="voltar-btn" routerLink="/barbearia-menu">
+      <ion-icon name="arrow-back" slot="start"></ion-icon>
+      Voltar
+    </ion-button>
+
+    <form *ngIf="formGroup" [formGroup]="formGroup" (ngSubmit)="salvarCaracteristicas()">
+      
+      <h2 class="section-title dark-text">
+        Características de Acessibilidade
+      </h2>
+      <p class="subtitle-text dark-text">
+        Marque **Sim** ou **Não** para cada item. Todos os campos são obrigatórios para salvar.
+      </p>
+
+      <div class="caracteristicas-list">
+        <ion-item 
+          *ngFor="let c of caracteristicas" 
+          lines="none" 
+          class="radio-group-item dark-item"
+        >
+          <ion-label>
+            <h3 class="caracteristica-nome">{{ c.nomeCaracteristica }}</h3>
+            <p *ngIf="c.descricaoCaracteristica" class="caracteristica-descricao">
+              {{ c.descricaoCaracteristica }}
+            </p>
+          </ion-label>
+          
+          <ion-radio-group 
+            slot="end"
+            [formControlName]="'caracteristica_' + c.idCaracteristica" 
+            class="radio-options"
+          >
+            <ion-radio value="true" class="radio-sim">
+              <ion-label>Sim</ion-label>
+            </ion-radio>
+            
+            <ion-radio value="false" class="radio-nao">
+              <ion-label>Não</ion-label>
+            </ion-radio>
+          </ion-radio-group>
+        </ion-item>
+      </div>
+
+      <div class="salvar-btn-wrapper">
+        <ion-button
+          expand="block"
+          class="salvar-btn"
+          type="submit"
+          [disabled]="!formGroup.valid">
+          Salvar Alterações
+        </ion-button>
+      </div>
+    </form>
+
+    <div *ngIf="!formGroup" class="loading-placeholder dark-text">
+      <ion-spinner name="crescent" color="primary-accent"></ion-spinner>
+      <p>Carregando características...</p>
+    </div>
+  </div>
+</ion-content>

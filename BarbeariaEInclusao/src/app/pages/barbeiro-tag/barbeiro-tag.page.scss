@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/* --- VARIÁVEIS DE CORES --- */
+:root {
+  --ion-color-dark-bg: #121212; /* Fundo principal: Preto quase total */
+  --ion-color-dark-surface: #1e1e1e; /* Superfícies (itens de lista): Cinza escuro */
+  --ion-color-primary-accent: #a8836b; /* Marrom principal (destaque) */
+  --ion-color-secondary-accent: #c9a892; /* Creme/rosa claro (texto de destaque/voltar) */
+  --ion-color-text-light: #f0f0f0; /* Texto principal claro */
+  --ion-color-text-muted: #aaaaaa; /* Texto secundário */
+}
+
+/* --- TEMA ESCURO GERAL (Aplicado ao ion-content) --- */
+.dark-bg {
+  --background: var(--ion-color-dark-bg);
+  background: var(--ion-color-dark-bg);
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: var(--ion-color-text-light);
+}
+
+.container {
+  max-width: 95vw;
+  margin: 0 auto;
+  padding-top: 60px; /* Espaço para botão voltar */
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* --- BOTÃO VOLTAR E TÍTULOS --- */
+.voltar-btn {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 10;
+  color: var(--ion-color-secondary-accent);
+  font-weight: 600;
+  font-size: 16px;
+  --padding-start: 0;
+  --padding-end: 0;
+  --background: transparent;
+}
+
+.voltar-btn ion-icon {
+  font-size: 22px;
+  margin-right: 4px;
+}
+
+.section-title {
+  font-size: 24px; 
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 8px;
+  margin-top: 20px;
+}
+
+.subtitle-text {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 24px;
+}
+
+.dark-text {
+  color: var(--ion-color-text-light);
+}
+
+/* --- LISTA DE CARACTERÍSTICAS (ion-list / ion-item) --- */
+.caracteristicas-list {
+  width: 100%;
+  max-width: 360px;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.radio-group-item {
+  --background: var(--ion-color-dark-surface);
+  --padding-start: 20px;
+  --padding-end: 10px;
+  --min-height: 65px; 
+  --border-radius: 12px; 
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); 
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  --inner-padding-end: 10px;
+  display: flex; 
+  align-items: center; 
+  transition: border 0.3s ease-out, box-shadow 0.3s ease-out, background 0.3s;
+}
+
+/* ✅ Item Selecionado */
+.radio-group-item.is-selected {
+  border: 2px solid var(--ion-color-primary-accent); 
+  box-shadow: 0 6px 20px rgba(168, 131, 107, 0.4); 
+  background: #252525;
+}
+
+.caracteristica-nome {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ion-color-text-light);
+  margin: 0 0 2px 0;
+}
+
+.caracteristica-descricao {
+  font-size: 12px;
+  color: var(--ion-color-text-muted);
+  margin: 0;
+}
+
+/* --- RADIO GROUP --- */
+.radio-options ion-radio {
+  --color-checked: var(--ion-color-primary-accent); /* Bolinha preenchida */
+  --border-color: var(--ion-color-text-muted);
+  --border-radius: 50%;
+  --size: 18px;
+}
+
+
+.radio-options ion-radio + ion-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ion-color-text-light);
+}
+
+.radio-options ion-radio[aria-checked="true"] + ion-label {
+  color: var(--ion-color-primary-accent); 
+  font-weight: 700;
+}
+
+/* --- BOTÃO SALVAR --- */
+.salvar-btn-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.salvar-btn {
+  --background: #c9a892; /* Marrom creme */
+  --border-radius: 25px; 
+  --box-shadow: 0 8px 25px rgba(201, 168, 146, 0.5); 
+  width: 200px; 
+  height: 50px; 
+  font-weight: 700;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: box-shadow 0.3s, transform 0.3s;
+  color: var(--ion-color-dark-bg);
+}
+
+.salvar-btn:hover,
+.salvar-btn:focus {
+  filter: brightness(1.1);
+  box-shadow: 0 10px 30px rgba(201, 168, 146, 0.7);
+  transform: scale(1.02);
+}
+
+.salvar-btn[disabled] {
+  opacity: 0.4;
+  pointer-events: none; 
+}
+
+/* --- Placeholder de Carregamento --- */
+.loading-placeholder {
+  width: 100%;
+  text-align: center;
+  padding-top: 100px;
+  color: var(--ion-color-text-muted);
+  font-weight: 500;
+}
+
+.loading-placeholder ion-spinner {
+  color: var(--ion-color-secondary-accent); 
+}
+
+/* Remove linha padrão do ion-item */
+ion-item {
+  --border-width: 0 !important;
+}

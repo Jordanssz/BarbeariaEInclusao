@@ -1,0 +1,245 @@
+<ion-header class="header-custom">
+  <ion-toolbar class="toolbar-custom">
+    <!-- Ícones de Navegação e Logout -->
+    <ion-buttons slot="start">
+      <ion-button (click)="navegarParaPerfilUsuario()">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="navegarParaAgendamentos()">
+        <ion-icon name="calendar-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="encerrarSessao()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="custom-bg">
+<style>
+/* --- Estilos de Layout --- */
+
+.header-custom {
+    --background: #fdf6ee; /* Cor clara de fundo do header */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.toolbar-custom {
+    --background: var(--ion-color-light); 
+    --padding-end: 10px;
+}
+
+.main-container {
+    padding: 20px 15px;
+}
+
+.search-box {
+    margin-bottom: 20px;
+    padding: 0 10px; /* Alinhamento visual */
+}
+
+.custom-searchbar {
+    --background: #fff;
+    --border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.list-title {
+    display: block;
+    margin: 10px 10px 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+}
+
+.barbershop-list-wrapper {
+    background: #fdf6ee; /* Cor de fundo clara para a área da lista */
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.barbershop-card {
+    margin: 10px 0;
+    --background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+}
+
+.card-content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.image-container {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: #f0f0f0;
+    border: 2px solid #ddd;
+}
+
+.barbershop-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Permite que o texto quebre */
+    /* Ajuste de Altura: Definimos uma altura mínima para garantir que o contêiner não encolha */
+    min-height: 60px; /* Igual à altura da imagem */
+}
+
+.barbershop-name {
+    font-weight: 600;
+    font-size: 1em;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.barbershop-description {
+    font-size: 0.85em;
+    color: #666;
+    /* CHAVE PARA NÃO AUMENTAR A CAIXA: Limita a descrição a uma única linha */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Adiciona um pequeno espaço inferior para separar da distância ou do fim do container */
+    margin-bottom: 2px; 
+}
+
+.select-btn {
+    --background: #a0522d; /* Cor marrom (Sienna) */
+    --background-activated: #8b4513;
+    font-size: 0.85em;
+    height: 35px;
+    flex-shrink: 0;
+}
+
+.no-results {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+}
+
+/* --- Estilo de Distância --- */
+/* A distância é exibida *dentro* do info-container, abaixo do nome e descrição */
+.distance-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    /* Removido o margin-top, pois agora ele é um elemento da coluna no info-container */
+    font-size: 0.8rem;
+    color: #a0522d; /* Use uma cor de destaque mais visível */
+}
+.distance-container ion-icon {
+    font-size: 1rem;
+}
+</style>
+
+<!-- Container Principal -->
+<div class="main-container">
+
+    <!-- Caixa de Busca -->
+    <div class="search-box">
+      <ion-searchbar 
+        placeholder="Digite o nome da barbearia" 
+        [(ngModel)]="termoBusca"
+        (ionChange)="onBuscaChange()"
+        showCancelButton="focus"
+        animated
+        class="custom-searchbar"
+      ></ion-searchbar>
+    </div>
+
+    <!-- Select de Características de Acessibilidade -->
+    <div class="filter-select-box">
+      <select 
+        [(ngModel)]="filtroCaracteristicaSelecionada" 
+        (change)="aplicarFiltroCaracteristica(filtroCaracteristicaSelecionada)"
+        class="caracteristica-select">
+        <option value="">Filtrar por acessibilidade...</option>
+        <option *ngFor="let carac of caracteristicasDisponiveis" [value]="carac">
+          {{ carac }}
+        </option>
+      </select>
+      <ion-icon name="filter-outline" class="select-icon"></ion-icon>
+    </div>
+
+    <!-- Título da Lista -->
+    <ion-label class="list-title">Barbearias próximas a você:</ion-label>
+
+    <!-- Lista de Barbearias -->
+    <div class="barbershop-list-wrapper">
+      <div *ngIf="barbeariasExibidas.length === 0" class="no-results">
+        <p *ngIf="!termoBusca">Carregando barbearias ou nenhuma encontrada...</p>
+        <p *ngIf="termoBusca">Nenhuma barbearia encontrada para "{{ termoBusca }}".</p>
+      </div>
+
+      <ion-card *ngFor="let barbearia of barbeariasExibidas" class="barbershop-card">
+        <div class="card-content-wrapper">
+          
+          <!-- Imagem/Avatar da Barbearia -->
+          <div class="image-container">
+            <img 
+  [src]="barbearia.fotoBarbearia || 'assets/avatar-placeholder.svg'" 
+  alt="Logo da Barbearia" 
+  class="barbershop-image"
+  onerror="this.onerror=null; this.src='assets/avatar-placeholder.svg';"
+/>
+          </div>
+
+          <!-- Informações -->
+          <div class="info-container">
+            <ion-label class="barbershop-name">{{ barbearia.nomeBarbearia }}</ion-label>
+            <ion-label class="barbershop-description">
+              {{ barbearia.descricaoBarbearia || 'Sem descrição.' }}
+            </ion-label>
+
+            <!-- Características de Acessibilidade (Tags Compactas) -->
+            <div class="acessibilidade-tags-horizontal" *ngIf="barbearia.caracteristicasAcessiveis && barbearia.caracteristicasAcessiveis.length > 0">
+              <span class="acessibilidade-tag" *ngFor="let carac of barbearia.caracteristicasAcessiveis | slice:0:2">
+                <ion-icon name="checkmark-circle-outline" class="tag-icon"></ion-icon>
+                {{ carac }}
+              </span>
+              <span class="acessibilidade-tag" *ngIf="barbearia.caracteristicasAcessiveis.length > 2" class="more-tag">
+                +{{ barbearia.caracteristicasAcessiveis.length - 2 }}
+              </span>
+            </div>
+
+            <!-- Exibição da Distância -->
+            <div 
+              class="distance-container" 
+              *ngIf="barbearia.distanciaKm !== undefined && clienteLatitude !== undefined">
+              <ion-icon name="navigate-circle-outline"></ion-icon>
+              <ion-label class="distance-label">
+                {{ barbearia.distanciaKm.toFixed(1) }} km de você
+              </ion-label>
+            </div>
+          </div>
+          
+          <!-- Botão de Selecionar -->
+          <ion-button 
+            class="select-btn" 
+            shape="round" 
+            (click)="selecionarBarbearia(barbearia.idBarbearia)">
+            Selecionar
+          </ion-button>
+        </div>
+      </ion-card>
+    </div>
+
+</div>
+</ion-content>

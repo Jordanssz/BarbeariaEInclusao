@@ -1,0 +1,187 @@
+/* ======= ESTILOS PARA SELECT DE CARACTERÍSTICAS ======= */
+
+.filter-select-box {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.caracteristica-select {
+  width: 100%;
+  padding: 10px 12px 10px 40px;
+  border: 1px solid #d4c4b0;
+  border-radius: 20px;
+  background: #fff;
+  color: #666;
+  font-size: 0.9rem;
+  cursor: pointer;
+  appearance: none;
+  background-image: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.caracteristica-select:hover {
+  border-color: #a8836b;
+  box-shadow: 0 4px 8px rgba(168, 131, 107, 0.12);
+}
+
+.caracteristica-select:focus {
+  outline: none;
+  border-color: #a8836b;
+  box-shadow: 0 4px 12px rgba(168, 131, 107, 0.2);
+}
+
+.caracteristica-select option {
+  padding: 8px;
+  background: #fff;
+  color: #666;
+}
+
+.select-icon {
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a8836b;
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+/* ======= ESTILOS PARA SEÇÃO DE FILTROS ======= */
+
+.filtros-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0d5ca;
+}
+
+.filtros-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #5a4a3a;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.filter-icon {
+  font-size: 1.1rem;
+  color: #a8836b;
+}
+
+.filtros-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filtro-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.85rem;
+  color: #666;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.checkbox-label:hover {
+  background: #f5eee7;
+  color: #5a4a3a;
+}
+
+.checkbox-input:checked + .checkbox-label {
+  background: linear-gradient(135deg, #f5eee7 0%, #ede6dc 100%);
+  color: #5a4a3a;
+  font-weight: 500;
+  border: 1px solid #d4c4b0;
+}
+
+.checkmark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #d4c4b0;
+  border-radius: 4px;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.checkbox-input:checked + .checkbox-label .checkmark {
+  background: #a8836b;
+  border-color: #a8836b;
+}
+
+.checkmark::after {
+  content: '';
+  display: none;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-top: -2px;
+}
+
+.checkbox-input:checked + .checkbox-label .checkmark::after {
+  display: block;
+}
+
+/* ======= ESTILOS PARA CARACTERÍSTICAS DE ACESSIBILIDADE ======= */
+
+.acessibilidade-tags-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0;
+  max-width: 100%;
+}
+
+.acessibilidade-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #f5eee7 0%, #ede6dc 100%);
+  color: #5a4a3a;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 12px;
+  white-space: normal;
+  border: 1px solid #d4c4b0;
+  box-shadow: 0 2px 4px rgba(168, 131, 107, 0.1);
+}
+
+.tag-icon {
+  font-size: 0.95rem;
+  color: #a8836b;
+  flex-shrink: 0;
+}
+
+.more-tag {
+  background: linear-gradient(135deg, #e8dfd2 0%, #ddd2c7 100%);
+  color: #5a4a3a;
+  font-weight: 700;
+  padding: 4px 8px;
+  border: 1px solid #c4b4a0;
+}

@@ -1,0 +1,37 @@
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">avaliacao</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content>
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/atendimentos-marcados"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Avaliar Atendimento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="custom-bg" [fullscreen]="true">
+  <div class="avaliacao-container ion-padding">
+    <div class="avaliacao-card">
+      <div class="avaliacao-title">Como foi o atendimento?</div>
+
+      <div class="stars-row">
+        <ion-button *ngFor="let s of [1,2,3,4,5]" fill="clear" (click)="selecionarNota(s)">
+          <ion-icon [name]="s <= nota ? 'star' : 'star-outline'" class="star-icon"></ion-icon>
+        </ion-button>
+      </div>
+
+      <ion-textarea [(ngModel)]="comentario" placeholder="Escreva um comentário (opcional)" rows="6"></ion-textarea>
+
+      <ion-button expand="block" (click)="enviarAvaliacao()" [disabled]="enviando">
+        {{ enviando ? 'Enviando...' : 'Enviar Avaliação' }}
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

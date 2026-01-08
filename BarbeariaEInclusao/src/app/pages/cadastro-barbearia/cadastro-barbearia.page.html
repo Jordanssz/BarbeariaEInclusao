@@ -1,0 +1,128 @@
+<ion-content class="custom-bg" [fullscreen]="true">
+  <div class="container">
+    
+    <!-- Botão de voltar -->
+    <ion-button fill="clear" class="voltar-btn" routerLink="/inicio">
+      <ion-icon name="arrow-back" slot="start"></ion-icon>
+      Início
+    </ion-button>
+
+    <!-- Box da foto de perfil -->
+    <div class="profile-pic-box">
+      <img [src]="fotoPreview || 'assets/avatar-placeholder.svg'" alt="Avatar" class="profile-pic" />
+      <button class="camera-btn" type="button" (click)="triggerFileInput()">
+        <ion-icon name="camera" class="camera-icon"></ion-icon>
+      </button>
+      <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" hidden>
+    </div>
+
+    <!-- Formulário de cadastro -->
+    <form [formGroup]="formGroup" (ngSubmit)="cadastrar()">
+
+      <ion-item class="input-item" lines="none">
+        <ion-input
+          formControlName="nomeBarbearia"
+          placeholder="Nome barbearia*"
+          type="text"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="input-item" lines="none">
+        <ion-input
+          formControlName="emailBarbearia"
+          placeholder="Email*"
+          type="email"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="input-item" lines="none">
+        <ion-input
+          formControlName="senhaBarbearia"
+          placeholder="Senha*"
+          type="password"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="input-item" lines="none">
+        <ion-textarea
+          formControlName="descricaoBarbearia"
+          placeholder="Descrição*"
+          autoGrow="true">
+        </ion-textarea>
+      </ion-item>
+
+      <!-- === INÍCIO: BLOCO DE SELEÇÃO DA LOCALIZAÇÃO === -->
+
+      <!-- 1. Exibir status e botão ABRIR MAPA, se o mapa NÃO estiver visível -->
+      <ion-item class="input-item" lines="none" *ngIf="!mostrarMapa">
+          <ion-label class="ion-text-wrap" color="medium">
+              Localização (Lat/Lng): 
+              <strong *ngIf="formGroup.get('latitude')?.value; else semLocalizacao">
+                  {{ formGroup.get('latitude')?.value | number: '1.6-6' }}, 
+                  {{ formGroup.get('longitude')?.value | number: '1.6-6' }}
+              </strong>
+          </ion-label>
+          <ng-template #semLocalizacao>
+              <span class="ion-text-danger">Não definida</span>
+          </ng-template>
+
+          <ion-button slot="end" (click)="abrirMapa()" color="secondary" shape="round" size="small">
+              <ion-icon name="map-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+      </ion-item>
+      
+      <!-- 2. BLOCO DO MAPA (Exibição Condicional, *ngIf="mostrarMapa") -->
+      <ion-card *ngIf="mostrarMapa" class="ion-margin-top">
+        <ion-card-header>
+          <ion-card-title>Selecione no Mapa</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          
+          <!-- Div que o Leaflet usa para renderizar o mapa. ID CRUCIAL: 'leafletMap' -->
+          <div id="leafletMap" class="map-container"></div>
+          
+          <ion-item lines="none" *ngIf="formGroup.get('latitude')?.value">
+            <ion-label class="ion-text-wrap">
+              Lat: <strong>{{ formGroup.get('latitude')?.value | number: '1.6-6' }}</strong> | 
+              Lng: <strong>{{ formGroup.get('longitude')?.value | number: '1.6-6' }}</strong>
+            </ion-label>
+          </ion-item>
+          
+          <!-- Botão para voltar ao formulário principal (confirma a seleção) -->
+          <ion-button 
+            expand="block" 
+            color="success" 
+            (click)="fecharMapa()"
+            class="ion-margin-top"
+          >
+            <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+            Confirmar e Voltar
+          </ion-button>
+
+        </ion-card-content>
+      </ion-card>
+      
+      <!-- === FIM: BLOCO DE SELEÇÃO DA LOCALIZAÇÃO === -->
+      
+      <!-- O botão de Cadastro/Update SÓ deve aparecer se o mapa NÃO estiver visível -->
+      <div class="entrar-btn-wrapper" *ngIf="!mostrarMapa">
+        <ion-button
+          expand="block"
+          class="entrar-btn"
+          type="submit"
+          [disabled]="formGroup.invalid">
+          {{ isEditMode ? 'Atualizar' : 'Cadastrar' }}
+        </ion-button>
+      </div>
+      
+    </form>
+
+    <div class="cadastro-text">
+      Já possui uma conta? <a routerLink="/login-barbearia">Faça login</a>
+    </div>
+
+  </div>
+</ion-content>

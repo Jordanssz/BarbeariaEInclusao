@@ -1,0 +1,71 @@
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <div class="header-toolbar">
+      <ion-button fill="clear" class="voltar-btn" routerLink="/barbearia-menu">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="custom-bg" [fullscreen]="true">
+  <div class="add-servico-container">
+    <div class="servico-top">
+      <div class="servico-img-box">
+        <img src="assets/no-image.svg" alt="No image" class="servico-img" />
+      </div>
+      <form [formGroup]="formGroup" class="servico-info">
+        <div class="servico-info-row">
+          <ion-input
+            formControlName="nomeServico"
+            placeholder="Nome do serviço*"
+            type="text"
+            class="servico-label"
+            required>
+          </ion-input>
+        </div>
+        <div class="servico-info-row">
+          <ion-input
+            formControlName="precoServico"
+            placeholder="Preço*"
+            type="number"
+            class="servico-label"
+            required>
+          </ion-input>
+        </div>
+        <div class="servico-info-row">
+          <ion-textarea
+            formControlName="descricaoServico"
+            placeholder="Descrição do serviço*"
+            autoGrow="true"
+            class="servico-label"
+            required>
+          </ion-textarea>
+        </div>
+      </form>
+    </div>
+
+    <!-- Botão para adicionar profissional -->
+    <div *ngIf="!adicionandoProfissional" class="add-profissional-bar">
+      <div class="profissional-icon">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </div>
+      <button class="add-profissional-btn" (click)="adicionandoProfissional = true">
+        Adicionar um profissional
+      </button>
+    </div>
+
+    <!-- Área para inserir código do profissional -->
+    <div *ngIf="adicionandoProfissional" class="add-profissional-box">
+      <div class="profissional-icon-box">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </div>
+      <input class="codigo-profissional-input" placeholder="Código do profissional" />
+      <button class="confirmar-add-btn">Adicionar</button>
+    </div>
+
+    <ion-button expand="block" color="primary" (click)="salvarServico()" [disabled]="formGroup.invalid">
+      Cadastrar Serviço
+    </ion-button>
+  </div>
+</ion-content>
